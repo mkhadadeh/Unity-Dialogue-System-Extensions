@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ShakeTag", menuName = "CustomTags/ShakeTag")]
-public class shake_TMPTag : CustomTMPTag
+[CreateAssetMenu(fileName = "ShakeNoEndTag", menuName = "CustomTags/ShakeNoEndTag")]
+public class shakeNoEnd_TMPTag : CustomTMPTag
 {
 
     public override string tag_name
     {
         get
         {
-            return "shake";
+            return "shakeNoEnd";
         }
     }
 
@@ -18,7 +18,7 @@ public class shake_TMPTag : CustomTMPTag
     {
         get
         {
-            return true;
+            return false;
         }
     }
 

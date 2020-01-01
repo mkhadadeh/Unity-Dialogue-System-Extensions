@@ -6,4 +6,9 @@ position: 860,408
 <shake=0.3>Hello</shake> there. 
 <alpha=20>Are<alpha=FF> <shake=0.1>you</shake> <color=A0550F>ready</color> for <shake=0.3><font="Snowballs SDF">THIS</font> stuff</shake>?
 I thought <shake=0.7>not</shake>. How about this?
+Let's try <shakeNoEnd=0.2> some of <color=A0550F>this</color> stuff.
+Now let's go <shake=0.4>back</shake> to this stuff.
+Now let's <shakeNoEnd=0.3>go crazy.
+And to finish off let's <shakeNoEnd=0.5>go even <color=A0550F>crazier</color>.
+Thanks for sticking with me.
 ===

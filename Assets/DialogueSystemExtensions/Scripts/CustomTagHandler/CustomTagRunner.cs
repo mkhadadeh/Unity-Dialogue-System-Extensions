@@ -64,7 +64,7 @@ public class CustomTagRunner : MonoBehaviour
                         if(plainText[endOfStartTagIndex] != '=')
                         {
                             Debug.Log("Tag at index " + errorIndex.ToString() + " of string " + copyOfPlainText + " is improperly formatted. Expected '=' or '>'.");
-                            return parsedText;
+                            continue;
                         }
                         else
                         {
