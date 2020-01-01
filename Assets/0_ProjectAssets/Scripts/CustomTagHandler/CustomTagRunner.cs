@@ -6,7 +6,7 @@ struct ParsedTagData
 {
     public int startIndex;
     public int length;
-    public float tag_param;
+    public string tag_param;
     public string tag_name;
 }
 
@@ -49,13 +49,13 @@ public class CustomTagRunner : MonoBehaviour
             bool found = false;
             // Search for a start tag at this point
             foreach (var tag in customTags) {
-                float param;
+                string param;
                 int endOfStartTagIndex;
                 if (plainText.StartsWith('<' + tag.Key)) // Found part of start tag
                 {
                     // Assume no parameter
                     endOfStartTagIndex = tag.Key.Length + 1;
-                    param = 0;
+                    param = "";
                     // If there is a parameter, process it.
                     if(!plainText.StartsWith('<'+tag.Key+'>'))
                     {
@@ -74,7 +74,7 @@ public class CustomTagRunner : MonoBehaviour
                                 realEndIndex++;
                             }
                             // Set param and end index of start tag
-                            param = float.Parse(plainText.Substring(endOfStartTagIndex + 1, realEndIndex - endOfStartTagIndex - 1));
+                            param = plainText.Substring(endOfStartTagIndex + 1, realEndIndex - endOfStartTagIndex - 1);
                             endOfStartTagIndex = realEndIndex;
                         }
                     }

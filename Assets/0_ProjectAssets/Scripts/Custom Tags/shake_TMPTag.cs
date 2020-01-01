@@ -20,11 +20,11 @@ public class shake_TMPTag : CustomTMPTag
         public float angle;
         public float speed;
     }
-    public override IEnumerator applyToText(TMPro.TextMeshPro text, int startIndex, int length, float param)
+    public override IEnumerator applyToText(TMPro.TextMeshPro text, int startIndex, int length, string param)
     {
         
         // Set up
-        float speed = param;
+        float speed = float.Parse(param);
         var textInfo = text.textInfo;
         Matrix4x4 transformMatrix;
 
