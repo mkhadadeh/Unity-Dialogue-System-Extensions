@@ -14,6 +14,14 @@ public class shake_TMPTag : CustomTMPTag
         }
     }
 
+    public override bool needs_closing_tag
+    {
+        get
+        {
+            return false;
+        }
+    }
+
     private struct VertexAnim
     {
         public float angleRange;

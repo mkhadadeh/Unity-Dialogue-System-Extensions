@@ -39,13 +39,14 @@ public class CustomTagRunner : MonoBehaviour
 
     public string ParseForCustomTags(string plainText)
     {
+        // Returns a string without the custom tags and stores the parsed tag data in parsedTags
         string copyOfPlainText = plainText;
         int errorIndex = 0;
         string parsedText = "";
 
         while(plainText != "")
         {
-            //Debug.Log(plainText + " and Parsed:" + parsedText);
+            // Debug.Log(plainText + " and Parsed:" + parsedText);
             bool found = false;
             // Search for a start tag at this point
             foreach (var tag in customTags) {
@@ -78,44 +79,74 @@ public class CustomTagRunner : MonoBehaviour
                             endOfStartTagIndex = realEndIndex;
                         }
                     }
-                    // Found start tag of type tag. Look for end tag of same type.
-                    for(int j = 0; j < plainText.Length; j++)
+                    // Check if tag type requires an end tag
+                    if (tag.Value.needs_closing_tag)
                     {
-                        if(plainText.Substring(0,j + 1).EndsWith("</" + tag.Key + '>'))
+                        // Found start tag of type tag. Look for end tag of same type.
+                        for (int j = 0; j < plainText.Length; j++)
                         {
-                            // Found valid tag pair. 
-                            found = true;
-                            int startOfEndTagIndex = j - tag.Key.Length - 2;
-
-                            // Create a copy of parsedText without tags
-                            string noTagParsedText = removeTags(parsedText);
-
-                            // Process and add plaintext version to parsed text.
-                            string textInTag = plainText.Substring(endOfStartTagIndex + 1, startOfEndTagIndex - endOfStartTagIndex - 1);
-                            parsedText += textInTag;
-                            errorIndex = j + 1;
-
-
-                            // Add parsed tag data to parsedTags
-                            ParsedTagData parsedTag = new ParsedTagData();
-                            parsedTag.tag_name = tag.Key;
-                            parsedTag.tag_param = param;
-                            parsedTag.startIndex = noTagParsedText.Length;
-                            parsedTag.length = removeTags(textInTag).Length;
-                            parsedTags.Add(parsedTag);
-
-
-                            // Reset plaintext so that the parsed tag isn't a part of it
-                            if (plainText.Length > j + 1)
+                            if (plainText.Substring(0, j + 1).EndsWith("</" + tag.Key + '>'))
                             {
-                                plainText = plainText.Substring(j + 1);
+                                // Found valid tag pair. 
+                                found = true;
+                                int startOfEndTagIndex = j - tag.Key.Length - 2;
+
+                                // Create a copy of parsedText without tags
+                                string noTagParsedText = removeTags(parsedText);
+
+                                // Process and add plaintext version to parsed text.
+                                string textInTag = plainText.Substring(endOfStartTagIndex + 1, startOfEndTagIndex - endOfStartTagIndex - 1);
+                                parsedText += textInTag;
+                                errorIndex = j + 1;
+
+
+                                // Add parsed tag data to parsedTags
+                                ParsedTagData parsedTag = new ParsedTagData();
+                                parsedTag.tag_name = tag.Key;
+                                parsedTag.tag_param = param;
+                                parsedTag.startIndex = noTagParsedText.Length;
+                                parsedTag.length = removeTags(textInTag).Length;
+                                parsedTags.Add(parsedTag);
+
+
+                                // Reset plaintext so that the parsed tag isn't a part of it
+                                if (plainText.Length > j + 1)
+                                {
+                                    plainText = plainText.Substring(j + 1);
+                                }
+                                else
+                                {
+                                    plainText = "";
+                                }
+                                break;
                             }
-                            else
-                            {
-                                plainText = "";
-                            }
-                            break;
                         }
+                    }
+                    else
+                    {
+                        // Tag does not need start tag. Parse the tag so that the effect applies to the text following the tag.
+                        found = true;
+                        string textAfterTag = "";
+                        if (plainText.Length > endOfStartTagIndex + 1) {
+                            textAfterTag = plainText.Substring(endOfStartTagIndex + 1);
+                        }
+                        ParsedTagData parsedTag = new ParsedTagData();
+                        parsedTag.tag_name = tag.Key;
+                        parsedTag.tag_param = param;
+                        parsedTag.startIndex = removeTags(parsedText).Length;
+                        parsedTag.length = removeTags(textAfterTag).Length;
+                        parsedTags.Add(parsedTag);
+                        
+                        // Reset the plaintext so that the tag isn't a part of it
+                        if(plainText.Length > endOfStartTagIndex + 1)
+                        {
+                            plainText = plainText.Substring(endOfStartTagIndex + 1);
+                        }
+                        else
+                        {
+                            plainText = "";
+                        }
+                        errorIndex = endOfStartTagIndex + 1;
                     }
                 }
                 if(found)
@@ -151,6 +182,7 @@ public class CustomTagRunner : MonoBehaviour
 
     public void ApplyTagEffects()
     {
+        // Applies the effects of parsedTags on the text
         Debug.Log("ApplyingTagEffects");
         lineText = GetComponent<TMPro.TextMeshPro>();
         lineText.ForceMeshUpdate();
@@ -170,7 +202,7 @@ public class CustomTagRunner : MonoBehaviour
 
     private string removeTags(string input)
     {
-        // Create a copy of parsedText without tags
+        // Helper function to remove all tags from text
         string noTagParsedText = "";
         bool inTag = false;
         for (int i = 0; i < input.Length; i++)
