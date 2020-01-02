@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ShakeNoEndTag", menuName = "CustomTags/ShakeNoEndTag")]
-public class shakeNoEnd_TMPTag : CustomTMPTag
+[CreateAssetMenu(fileName = "ShakeRTLTag", menuName = "CustomRTLTags/ShakeTag")]
+public class shake_RTLTMPTag : CustomRTLTMPTag
 {
 
     public override string tag_name
     {
         get
         {
-            return "shakeNoEnd";
+            return "shake";
         }
     }
 
@@ -18,7 +18,7 @@ public class shakeNoEnd_TMPTag : CustomTMPTag
     {
         get
         {
-            return false;
+            return true;
         }
     }
 
@@ -28,7 +28,7 @@ public class shakeNoEnd_TMPTag : CustomTMPTag
         public float angle;
         public float speed;
     }
-    public override IEnumerator applyToText(TMPro.TextMeshPro text, int startIndex, int length, string param)
+    public override IEnumerator applyToText(RTLTMPro.RTLTextMeshPro text, int startIndex, int length, string param)
     {
         
         // Set up

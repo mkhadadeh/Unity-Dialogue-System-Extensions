@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomTagRunner : MonoBehaviour
+public class CustomTagRunnerRTL : MonoBehaviour
 {
     struct ParsedTagData
     {
@@ -12,19 +12,19 @@ public class CustomTagRunner : MonoBehaviour
         public string tag_name;
     }
 
-    public TMPro.TextMeshPro lineText;
-    public Dictionary<string,CustomTMPTag> customTags;
-    List<CustomTMPTag> clones;
+    public RTLTMPro.RTLTextMeshPro lineText;
+    public Dictionary<string,CustomRTLTMPTag> customTags;
+    List<CustomRTLTMPTag> clones;
     List<ParsedTagData> parsedTags;
 
     // Start is called before the first frame update
     void Awake()
     {
-        customTags = new Dictionary<string, CustomTMPTag>();
-        lineText = GetComponent<TMPro.TextMeshPro>();
+        customTags = new Dictionary<string, CustomRTLTMPTag>();
+        lineText = GetComponent<RTLTMPro.RTLTextMeshPro>();
         parsedTags = new List<ParsedTagData>();
-        clones = new List<CustomTMPTag>();
-        var tags = Resources.LoadAll<CustomTMPTag>("CustomTags");
+        clones = new List<CustomRTLTMPTag>();
+        var tags = Resources.LoadAll<CustomRTLTMPTag>("CustomRTLTags");
         foreach(var t in tags)
         {
             customTags.Add(t.tag_name, t);
@@ -184,7 +184,7 @@ public class CustomTagRunner : MonoBehaviour
     {
         // Applies the effects of parsedTags on the text
         Debug.Log("ApplyingTagEffects");
-        lineText = GetComponent<TMPro.TextMeshPro>();
+        lineText = GetComponent<RTLTMPro.RTLTextMeshPro>();
         lineText.ForceMeshUpdate();
         foreach(var tag in parsedTags)
         {

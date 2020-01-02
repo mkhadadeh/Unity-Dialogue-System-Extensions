@@ -69,10 +69,11 @@ public class TMPDialogueUI : Yarn.Unity.DialogueUIBehaviour
 
     public CustomTagRunner customTagHandler;
 
-    private void Start()
+    void Start()
     {
         customTagHandler = lineText.gameObject.AddComponent<CustomTagRunner>();
     }
+
     void Awake ()
     {
         // Start by hiding the container, line and option buttons

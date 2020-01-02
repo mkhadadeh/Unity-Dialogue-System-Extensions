@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AudioTag", menuName = "CustomTags/AudioTag")]
-public class audio_TMPTag : CustomTMPTag
+[CreateAssetMenu(fileName = "AudioRTLTag", menuName = "CustomRTLTags/AudioTag")]
+public class audio_RTLTMPTag : CustomRTLTMPTag
 {
 
     public override string tag_name
@@ -22,7 +22,7 @@ public class audio_TMPTag : CustomTMPTag
         }
     }
 
-    public override IEnumerator applyToText(TMPro.TextMeshPro text, int startIndex, int length, string param)
+    public override IEnumerator applyToText(RTLTMPro.RTLTextMeshPro text, int startIndex, int length, string param)
     {
         AudioSource source = GameObject.Find("SceneAudio").GetComponent<AudioSource>();
         source.Stop();

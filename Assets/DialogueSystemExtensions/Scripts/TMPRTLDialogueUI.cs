@@ -67,6 +67,13 @@ public class TMPRTLDialogueUI : Yarn.Unity.DialogueUIBehaviour
     /// dialogue is active and to restore them when dialogue ends
     public RectTransform gameControlsContainer;
 
+    public CustomTagRunnerRTL customTagHandler;
+
+    void Start()
+    {
+        customTagHandler = lineText.gameObject.AddComponent<CustomTagRunnerRTL>();
+    }
+
     void Awake ()
     {
         // Start by hiding the container, line and option buttons
@@ -87,35 +94,48 @@ public class TMPRTLDialogueUI : Yarn.Unity.DialogueUIBehaviour
     /// Show a line of dialogue, gradually
     public override IEnumerator RunLine (Yarn.Line line)
     {
+        lineText.gameObject.SetActive(false);
+        lineText.gameObject.SetActive(true);
         // Show the text
-        lineText.gameObject.SetActive (true);
-        lineText.text = YarnRTFToTMP(line.text);
+        customTagHandler.StopAllCoroutines();
+        customTagHandler.clearClones();
+        lineText.text = customTagHandler.ParseForCustomTags(YarnRTFToTMP(line.text));
         lineText.ForceMeshUpdate();
-
+        customTagHandler.ApplyTagEffects();
 
 
         Debug.Log("Characters in line " + lineText.textInfo.characterCount);
         // Set the text show nothing
         lineText.maxVisibleCharacters = 0;
 
-        if (textSpeed > 0.0f) {
+        if (textSpeed > 0.0f)
+        {
             // Display the line one character at a time
 
-            for(int i = 0; i < lineText.textInfo.characterCount; i++) {
+            for (int i = 0; i < lineText.textInfo.characterCount; i++)
+            {
                 lineText.maxVisibleCharacters++;
-                yield return new WaitForSeconds (textSpeed);
+                lineText.ForceMeshUpdate();
+                customTagHandler.OnTextChange();
+                yield return new WaitForSeconds(textSpeed);
             }
-        } else {
+        }
+        else
+        {
             // Display the line immediately if textSpeed == 0
             lineText.maxVisibleCharacters = lineText.textInfo.characterCount;
+            lineText.ForceMeshUpdate();
         }
+
+        customTagHandler.ClearParsedTags();
 
         // Show the 'press any key' prompt when done, if we have one
         if (continuePrompt != null)
-            continuePrompt.SetActive (true);
+            continuePrompt.SetActive(true);
 
         // Wait for any user input
-        while (Input.anyKeyDown == false) {
+        while (Input.anyKeyDown == false)
+        {
             yield return null;
         }
 
@@ -123,11 +143,10 @@ public class TMPRTLDialogueUI : Yarn.Unity.DialogueUIBehaviour
         yield return new WaitForEndOfFrame();
 
         // Hide the text and prompt
-        lineText.gameObject.SetActive (false);
+        lineText.gameObject.SetActive(false);
 
         if (continuePrompt != null)
-            continuePrompt.SetActive (false);
-
+            continuePrompt.SetActive(false);
     }
 
     /// Show a list of options, and wait for the player to make a selection.
