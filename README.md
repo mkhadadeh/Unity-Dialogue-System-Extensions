@@ -1,5 +1,6 @@
 # Unity Dialogue System Extensions (with RTL support)
-Note: *This set of extensions does not work with Yarn 1.0. Currently, it works with Yarn 0.9.11*
+Note: *This set of extensions does not work with Yarn 1.0. Currently, it works with Yarn 0.9.11.*
+
  This project contains a few scripts that extend YarnSpinner, TextMesh Pro, and RTL TextMeshPro. These scripts integrate YarnSpinner with TextMesh Pro, allow the creation of custom rich text tags, and allow the YarnSpinner to display RTL text.
 
 ## YarnSpinner and TextMesh Pro
