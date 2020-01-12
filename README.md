@@ -1,4 +1,4 @@
-# Unity Dialogue System Extensions
+# Unity Dialogue System Extensions (with RTL support)
  This project contains a few scripts that extend YarnSpinner, TextMesh Pro, and RTL TextMeshPro. These scripts integrate YarnSpinner with TextMesh Pro, allow the creation of custom rich text tags, and allow the YarnSpinner to display RTL text.
 
 ## YarnSpinner and TextMesh Pro
@@ -19,6 +19,8 @@
    
  After creating the script for the tag, create an object of the tag type in the editor and store it in `DialogueSystemExtensions/Resources/CustomTags/` so that the parser will know to look for the tag.
 ## RTL Dialogue and YarnSpinner
+ Note: *If you do not need RTL support, switch to the master branch. That branch does not include RTL support.*
+ 
  RTL Dialogue is implemented using @mnarimani's RTL Text Mesh Pro plugin found here https://github.com/mnarimani/RTLTMPro. To use Yarn Dialogue with RTL Text Mesh Pro, use the `TMPRTLDialogueUI` Component. This will work the same way the TMPDialogueUI Component works, but with RTL Text Mesh Pro components.
  
  ### RTL Custom Tags
