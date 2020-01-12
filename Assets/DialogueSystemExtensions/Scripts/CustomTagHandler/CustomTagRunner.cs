@@ -28,7 +28,6 @@ public class CustomTagRunner : MonoBehaviour
         foreach(var t in tags)
         {
             customTags.Add(t.tag_name, t);
-            Debug.Log("Tag name: " + t.tag_name);
         }
     }
 
@@ -63,7 +62,6 @@ public class CustomTagRunner : MonoBehaviour
                         // Param is given (or tag improperly formatted)
                         if(plainText[endOfStartTagIndex] != '=')
                         {
-                            Debug.Log("Tag at index " + errorIndex.ToString() + " of string " + copyOfPlainText + " is improperly formatted. Expected '=' or '>'.");
                             continue;
                         }
                         else
@@ -183,12 +181,10 @@ public class CustomTagRunner : MonoBehaviour
     public void ApplyTagEffects()
     {
         // Applies the effects of parsedTags on the text
-        Debug.Log("ApplyingTagEffects");
         lineText = GetComponent<TMPro.TextMeshPro>();
         lineText.ForceMeshUpdate();
         foreach(var tag in parsedTags)
         {
-            Debug.Log("Applying " + tag.tag_name + " with parameter " + tag.tag_param + " to text at index " + tag.startIndex + " with length " + tag.length);
             var clonedTagRunner = customTags[tag.tag_name].clone();
             clones.Add(clonedTagRunner);
             StartCoroutine(clones[clones.Count-1].applyToText(lineText, tag.startIndex, tag.length, tag.tag_param));

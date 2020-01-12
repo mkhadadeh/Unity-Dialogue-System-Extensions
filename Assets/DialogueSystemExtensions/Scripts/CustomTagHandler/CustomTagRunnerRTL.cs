@@ -28,7 +28,6 @@ public class CustomTagRunnerRTL : MonoBehaviour
         foreach(var t in tags)
         {
             customTags.Add(t.tag_name, t);
-            Debug.Log("Tag name: " + t.tag_name);
         }
     }
 
@@ -63,7 +62,6 @@ public class CustomTagRunnerRTL : MonoBehaviour
                         // Param is given (or tag improperly formatted)
                         if(plainText[endOfStartTagIndex] != '=')
                         {
-                            Debug.Log("Tag at index " + errorIndex.ToString() + " of string " + copyOfPlainText + " is improperly formatted. Expected '=' or '>'.");
                             continue;
                         }
                         else
@@ -183,7 +181,6 @@ public class CustomTagRunnerRTL : MonoBehaviour
     public void ApplyTagEffects()
     {
         // Applies the effects of parsedTags on the text
-        Debug.Log("ApplyingTagEffects");
         lineText = GetComponent<RTLTMPro.RTLTextMeshPro>();
         lineText.ForceMeshUpdate();
         foreach(var tag in parsedTags)

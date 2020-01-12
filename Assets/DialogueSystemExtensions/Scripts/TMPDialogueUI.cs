@@ -24,6 +24,8 @@ SOFTWARE.
 
 */
 
+//TMPDialogueUI.cs is an edit by Mohammed Khadadeh of ExampleDialogueUI.cs
+
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -67,11 +69,15 @@ public class TMPDialogueUI : Yarn.Unity.DialogueUIBehaviour
     /// dialogue is active and to restore them when dialogue ends
     public RectTransform gameControlsContainer;
 
-    public CustomTagRunner customTagHandler;
+    // This parses and runs custom text tags on the Yarn text.
+    private CustomTagRunner customTagHandler;
+    
+    // This is a list of all the color data of each character's 4 vertices
+    // in the current line. This is necessary to set alphas correctly.
+    private List<Color32> prevColors;
 
-    public List<Color32> prevColors;
-
-    public TMPro.TMP_Text m_TextComponent;
+    // This is the component that will allow us to set individual character alphas.
+    private TMPro.TMP_Text m_TextComponent;
 
     void Start()
     {
@@ -99,16 +105,19 @@ public class TMPDialogueUI : Yarn.Unity.DialogueUIBehaviour
     /// Show a line of dialogue, gradually
     public override IEnumerator RunLine (Yarn.Line line)
     {
+        // Reset text
         lineText.gameObject.SetActive(false);
         lineText.gameObject.SetActive(true);
-        // Show the text
         customTagHandler.StopAllCoroutines();
         customTagHandler.clearClones();
         prevColors.Clear();
+        
+        // Set new text after processing
         lineText.SetText(customTagHandler.ParseForCustomTags(YarnRTFToTMP(line.text)));
         lineText.ForceMeshUpdate();
         customTagHandler.ApplyTagEffects();
-        // Set up teletype via alpha
+
+        // Set up teletype by setting alpha to 0
         TMPro.TMP_Text m_TextComponent = lineText.GetComponent<TMPro.TMP_Text>();
         TMPro.TMP_TextInfo textInfo = m_TextComponent.textInfo;
         while(textInfo.characterCount == 0)
@@ -116,9 +125,6 @@ public class TMPDialogueUI : Yarn.Unity.DialogueUIBehaviour
             yield return new WaitForSeconds(0.25f);
         }
         Color32[] newVertexColors;
-
-        Debug.Log("Characters in line " + lineText.textInfo.characterCount);
-        // Set the text show nothing
         for (int currentCharacter = 0; currentCharacter < textInfo.characterCount; currentCharacter++)
         {
             int materialIndex = textInfo.characterInfo[currentCharacter].materialReferenceIndex;
@@ -135,7 +141,6 @@ public class TMPDialogueUI : Yarn.Unity.DialogueUIBehaviour
                 for (int j = 0; j < 4; j++)
                     prevColors.Add(new Color32(0, 0, 0, 0));
             }
-            Debug.Log("Number in prevColors: " + prevColors.Count.ToString() + " and last char added was '" + textInfo.characterInfo[currentCharacter].character + "'");
             // Set color to transparent
             if (textInfo.characterInfo[currentCharacter].isVisible)
             {
@@ -143,39 +148,37 @@ public class TMPDialogueUI : Yarn.Unity.DialogueUIBehaviour
                     newVertexColors[vertexIndex + j] = new Color32(textInfo.meshInfo[materialIndex].colors32[vertexIndex + j].r, textInfo.meshInfo[materialIndex].colors32[vertexIndex + j].g, textInfo.meshInfo[materialIndex].colors32[vertexIndex + j].b, 0);
                 m_TextComponent.UpdateVertexData(TMPro.TMP_VertexDataUpdateFlags.Colors32);
             }
-            
         }
 
-        if (textSpeed > 0.0f) {
+        // Begin Teletype
+        if (textSpeed > 0.0f)
+        {
             // Display the line one character at a time
-            Debug.Log("Vertices in line: " + ((lineText.textInfo.characterCount * 4).ToString()));
-            for (int i = 0; i < textInfo.characterCount; i++) {
-                
+            for (int i = 0; i < textInfo.characterCount; i++)
+            {
                 int materialIndex = textInfo.characterInfo[i].materialReferenceIndex;
                 newVertexColors = textInfo.meshInfo[materialIndex].colors32;
                 int vertexIndex = textInfo.characterInfo[i].vertexIndex;
-                Debug.Log("Character we are looking for is '" + textInfo.characterInfo[i].character + "'");
                 if (textInfo.characterInfo[i].isVisible)
                 {
                     for (int j = 0; j < 4; j++)
                     {
                         newVertexColors[vertexIndex + j] = prevColors[4 * i + j];
-                        Debug.Log("Index of prevColors: " + (4*i + j).ToString());
                     }
                     m_TextComponent.UpdateVertexData(TMPro.TMP_VertexDataUpdateFlags.Colors32);
                 }
-                //customTagHandler.OnTextChange();
                 yield return new WaitForSeconds (textSpeed);
             }
-        } else {
+        }
+        else
+        {
             // Display the line immediately if textSpeed == 0
             for (int currentCharacter = 0; currentCharacter < textInfo.characterCount; currentCharacter++)
             {
                 int materialIndex = textInfo.characterInfo[currentCharacter].materialReferenceIndex;
                 newVertexColors = textInfo.meshInfo[materialIndex].colors32;
                 int vertexIndex = textInfo.characterInfo[currentCharacter].vertexIndex;
-                Debug.Log("Number in prevColors: " + prevColors.Count.ToString() + " and last char added was '" + textInfo.characterInfo[currentCharacter].character + "'");
-                // Set color back
+                // Set color back to the color it is supposed to be
                 if (textInfo.characterInfo[currentCharacter].isVisible)
                 {
                     for (int j = 0; j < 4; j++)
@@ -186,6 +189,7 @@ public class TMPDialogueUI : Yarn.Unity.DialogueUIBehaviour
             }
         }
 
+        // Reset Custom Tag Runner
         customTagHandler.ClearParsedTags();
 
         // Show the 'press any key' prompt when done, if we have one
