@@ -3,12 +3,12 @@ tags:
 colorID: 0
 position: 860,408
 ---
-<shake=0.3>Hello</shake> there. 
+<shake=0.3>Hello</shake> there.
 <alpha=20>Are<alpha=FF> <shake=0.1>you</shake> <color=A0550F>ready</color> for <shake=0.3><font="Snowballs SDF">THIS</font> stuff</shake>?
-I thought <shake=0.7>not</shake>. How about this?
+I thought <wave=2.0 3.0>not</wave>. How about this?
 Let's try some of <color=A0550F>this</color> stuff. <audio=audio3>
 Now let's go <shake=0.4>back</shake> to this stuff. <audio=audio1>
 Now let's go crazy. <audio=audio2>
-And to finish off let's go even <color=A0550F>crazier</color>. <audio=audio0>
+And to <wave=10>finish off</wave> let's go even <color=A0550F>crazier</color>. <audio=audio0>
 Thanks for sticking with me.
 ===
