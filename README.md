@@ -20,12 +20,3 @@
  After creating the script for the tag, create an object of the tag type in the editor and store it in `Resources/CustomTags/` so that the parser will know to look for the tag.
 ## RTL Dialogue and YarnSpinner
  Note: *Switch to the RTL branch of this repository to get access to RTL support. The master branch does not include any RTL features.*
- 
- RTL Dialogue is implemented using @mnarimani's RTL Text Mesh Pro plugin found here https://github.com/mnarimani/RTLTMPro. To use Yarn Dialogue with RTL Text Mesh Pro, use the `TMPRTLDialogueUI` Component. This will work the same way the TMPDialogueUI Component works, but with RTL Text Mesh Pro components.
- 
- ### RTL Custom Tags
- You can create custom tags for RTL Dialogue. These tags must extend from `CustomRTLTMPTag`. They work the same way Custom Tags work.
- 
- Note: *Tags extending from `CustomTMPTag` are not parsed for RTL Text. Tags extending from `CustomRTLTMPTag` are not parsed for text that does not use the RTL Text Mesh Pro component*
- 
- After coding RTL Custom Tags, create an object of the tag type in the editor and store it in `Resources/CustomRTLTags/` so that the parser will know to look for the tag.
