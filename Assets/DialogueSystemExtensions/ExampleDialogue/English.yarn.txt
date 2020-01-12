@@ -11,4 +11,8 @@ Now let's go <shake=0.4>back</shake> to this stuff. <audio=audio1>
 Now let's go crazy. <audio=audio2>
 And to <wave=10>finish off</wave> let's go even <color=A0550F>crazier</color>. <audio=audio0>
 Thanks for sticking with me.
+-> No Problem.
+	:D
+-> Lol finally.
+	:(
 ===
