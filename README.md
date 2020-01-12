@@ -1,4 +1,4 @@
-# Unity Dialogue System Extensions
+# Unity Dialogue System Extensions (with RTL support)
  This project contains a few scripts that extend YarnSpinner, TextMesh Pro, and RTL TextMeshPro. These scripts integrate YarnSpinner with TextMesh Pro, allow the creation of custom rich text tags, and allow the YarnSpinner to display RTL text.
 
 ## YarnSpinner and TextMesh Pro
