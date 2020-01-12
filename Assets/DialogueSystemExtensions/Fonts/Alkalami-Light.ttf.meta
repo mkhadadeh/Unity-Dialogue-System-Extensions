@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 54e504da6d234254fbabdc15a16a06c4
+guid: 4a78eb74edc08a240ac4c7b3945e8869
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Khalid
+  fontName: Alkalami Light
   fontNames:
-  - Khalid
+  - Alkalami Light
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
