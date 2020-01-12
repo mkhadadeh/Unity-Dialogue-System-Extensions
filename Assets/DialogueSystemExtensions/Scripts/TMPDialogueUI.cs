@@ -77,7 +77,6 @@ public class TMPDialogueUI : Yarn.Unity.DialogueUIBehaviour
     {
         customTagHandler = lineText.gameObject.AddComponent<CustomTagRunner>();
         prevColors = new List<Color32>();
-        m_TextComponent = GetComponent<TMPro.TMP_Text>();
     }
 
     void Awake ()
