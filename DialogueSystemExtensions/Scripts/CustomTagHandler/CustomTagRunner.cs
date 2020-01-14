@@ -12,7 +12,7 @@ public class CustomTagRunner : MonoBehaviour
         public string tag_name;
     }
 
-    public TMPro.TextMeshPro lineText;
+    public TMPro.TextMeshProUGUI lineText;
     public Dictionary<string,CustomTMPTag> customTags;
     List<CustomTMPTag> clones;
     List<ParsedTagData> parsedTags;
@@ -21,7 +21,7 @@ public class CustomTagRunner : MonoBehaviour
     void Awake()
     {
         customTags = new Dictionary<string, CustomTMPTag>();
-        lineText = GetComponent<TMPro.TextMeshPro>();
+        lineText = GetComponent<TMPro.TextMeshProUGUI>();
         parsedTags = new List<ParsedTagData>();
         clones = new List<CustomTMPTag>();
         var tags = Resources.LoadAll<CustomTMPTag>("CustomTags");
@@ -181,7 +181,7 @@ public class CustomTagRunner : MonoBehaviour
     public void ApplyTagEffects()
     {
         // Applies the effects of parsedTags on the text
-        lineText = GetComponent<TMPro.TextMeshPro>();
+        lineText = GetComponent<TMPro.TextMeshProUGUI>();
         lineText.ForceMeshUpdate();
         foreach(var tag in parsedTags)
         {
