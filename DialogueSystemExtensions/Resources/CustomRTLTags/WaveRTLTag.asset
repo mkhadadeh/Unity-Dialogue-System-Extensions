@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 017ba74d273ce314dabb628b680d1068, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bfdc946586a83f4098b8e9ac7336746, type: 3}
   m_Name: WaveRTLTag
   m_EditorClassIdentifier: 

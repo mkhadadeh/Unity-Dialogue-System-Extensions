@@ -1,0 +1,46 @@
+title: MyTest.Start
+tags: 
+colorID: 0
+position: 860,408
+---
+Hello there! #line:0325f76
+This is a YarnSpinner demo that integrates it with <wave=15.0 3.0>TextMesh Pro!</wave> #line:0c4d6bf
+-> Here is an option! #line:099dc7d
+    <color=00FF00>Wow!</color> I see you like the pressing the <i>first</i> button. #line:0c44a8b
+    Here's a <b>sound</b> to make you happy. <audio=audio0> #line:0612e57
+    << set $first to 1 >> 
+-> This is another one! #line:0b8e35e
+    <shake=4.0>What?!</shake> You pressed the <b>second</b> button?? #line:0623b91
+    Boy, do you like to live dangerously! #line:0187660
+    << set $first to 0 >> 
+Let's try something different shall we? #line:0c821d2
+[[ Should you choose this option... |MyTest.FirstOption]]  #line:08e0c27
+[[ Or <i>this</i> one? |MyTest.SecondOption]]  #line:0422347
+===
+title: MyTest.FirstOption
+tags: 
+colorID: 2
+position: 629,696
+---
+<< if $first is 1>> 
+    Boy do you like to click the things that appear first... #line:05afae9
+<< else >>
+    Nice choice! #line:0cee25a
+<< endif>>
+Your reward is this sound. <audio=audio1> #line:0bb9235
+===
+title: MyTest.SecondOption
+tags: 
+colorID: 0
+position: 1164,688
+---
+<< if $first is 0>> 
+    Why do you always pick the second option? #line:07ae1ad
+    So sad :( <audio=audio2> #line:0668163
+<< else >>
+    Changing it up? #line:06c652f
+<< endif>>
+And now for something completely different... #line:0692e96
+<<logMe CommandTest Hiiiiii~~~>> 
+Check your console ;) #line:06ec877
+===

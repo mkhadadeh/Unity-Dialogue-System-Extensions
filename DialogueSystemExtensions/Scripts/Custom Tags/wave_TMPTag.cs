@@ -22,7 +22,7 @@ public class wave_TMPTag : CustomTMPTag
         }
     }
 
-    public override IEnumerator applyToText(TMPro.TextMeshPro text, int startIndex, int length, string param)
+    public override IEnumerator applyToText(TMPro.TextMeshProUGUI text, int startIndex, int length, string param)
     {
         // Set up
 

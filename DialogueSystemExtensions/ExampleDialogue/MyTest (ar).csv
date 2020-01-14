@@ -1,0 +1,20 @@
+id,text,file,node,lineNumber
+line:0325f76,أهلا وسهلا!,MyTest,MyTest.Start,6
+line:0c4d6bf,هذه تجربة ل YarnSpinner باستعمال <wave=15.0 3.0>TextMesh Pro!</wave>,MyTest,MyTest.Start,7
+line:099dc7d,هذا خيار!,MyTest,MyTest.Start,8
+line:0b8e35e,وهذا خيار آخر!,MyTest,MyTest.Start,12
+line:0c44a8b,<color=00FF00>يا للهول!</color> أراك تحب الزر <i> الأول </i>,MyTest,MyTest.Start,9
+line:0612e57,إليك هذا  <b> الصوت </b> <audio=audio0>,MyTest,MyTest.Start,10
+line:0623b91,<shake=4.0>ماذا!؟</shake> ضغطت الزر <b> الثاني؟؟ </b>,MyTest,MyTest.Start,13
+line:0187660,يا لك من شجاع!,MyTest,MyTest.Start,14
+line:0c821d2,لنجرب شيء آخر,MyTest,MyTest.Start,16
+line:08e0c27,هل ستختار هذه؟,MyTest,MyTest.Start,17
+line:0422347,أم <i> هذه؟ </i>,MyTest,MyTest.Start,18
+line:05afae9,لما تضغط الأول فقط؟,MyTest,MyTest.FirstOption,26
+line:0cee25a,خيار جميل!,MyTest,MyTest.FirstOption,28
+line:0bb9235,جائزتك هذا الصوت. <audio=audio1>,MyTest,MyTest.FirstOption,30
+line:07ae1ad,لما دائما الثاني؟؟,MyTest,MyTest.SecondOption,38
+line:0668163,يا للحزن :( <audio=audio2>,MyTest,MyTest.SecondOption,39
+line:06c652f,تغير الحال؟,MyTest,MyTest.SecondOption,41
+line:0692e96,لك شيء آخر تماما,MyTest,MyTest.SecondOption,43
+line:06ec877,أنظر إلى ال console,MyTest,MyTest.SecondOption,45
