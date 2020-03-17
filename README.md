@@ -4,7 +4,7 @@ Note: *This set of extensions works with YarnSpinner 1.0.1.*
  This project contains a few scripts that extend YarnSpinner, TextMesh Pro, and RTL TextMeshPro. These scripts integrate YarnSpinner with TextMesh Pro, allow the creation of custom rich text tags, and allow the YarnSpinner to display RTL text.
 
 ## YarnSpinner and TextMesh Pro
- YarnSpinner works with regular Unity UI Text, which doesn't allow for styling of specific parts of the text. For example, if you wanted to italicize a part of the text, that wouldn't work with regular old Unity UI. The `TMPDialogueUI` Component allows YarnSpinner to access TextMesh Pro Components and use them for dialogue rather than using Unity UI Text. Just make sure you aren't using the TextMesh Pro UGUI component.
+ YarnSpinner works with regular Unity UI Text, which doesn't allow for styling of specific parts of the text. For example, if you wanted to italicize a part of the text, that wouldn't work with regular old Unity UI. The `TMPDialogueUI` Component allows YarnSpinner to access TextMesh Pro UGUI Components and use them for dialogue rather than using Unity UI Text. Just make sure you are using the TextMesh Pro UGUI component, not the regular TextMesh Pro component.
  
  Note: *If you are using TextMesh Pro to color parts of the text, using Hex Codes requires a #. YarnSpinner doesn't work well with #'s because it uses them to denote comments. So I wrote a workaround for that. Just write your TextMesh Pro color styling tag without the #. After Yarn has parsed it, it will add the # in to let TextMesh Pro parse it. Ex: `<color=FFFFFF>` instead of `<color=#FFFFFF>`*
 
